@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
-	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/canvas"
 	"io/ioutil"
-	"jaysonhelseth/gopictureframe/driver"
 	"log"
 	"math/rand"
 	"time"
+
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/canvas"
 )
 
 func main() {
@@ -21,8 +20,8 @@ func main() {
 	w.SetContent(image)
 
 	myApp.Settings().SetTheme(myTheme{})
-	//w.SetFullScreen(true)
-	w.Resize(fyne.NewSize(200, 200))
+	w.SetFullScreen(true)
+	//w.Resize(fyne.NewSize(200, 200))
 
 	go func() {
 		for {
@@ -31,8 +30,6 @@ func main() {
 			image.Refresh()
 		}
 	}()
-
-	go driver.Start()
 
 	w.ShowAndRun()
 }
