@@ -7,21 +7,24 @@ import (
 	"math/rand"
 	"time"
 
+	"jaysonhelseth/gopictureframe/events"
+	"jaysonhelseth/gopictureframe/shared"
+
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 )
 
 func main() {
 	myApp := app.New()
-	w := myApp.NewWindow("Picture Frame")
+	shared.AppWindow = myApp.NewWindow("Picture Frame")
 
 	image := canvas.NewImageFromFile(getImage())
 	image.FillMode = canvas.ImageFillContain
-	w.SetContent(image)
+	shared.AppWindow.SetContent(image)
 
 	myApp.Settings().SetTheme(myTheme{})
-	w.SetFullScreen(true)
-	//w.Resize(fyne.NewSize(200, 200))
+	shared.AppWindow.SetFullScreen(true)
+	//shared.AppWindow.Resize(fyne.NewSize(500, 500))
 
 	go func() {
 		for {
@@ -31,7 +34,8 @@ func main() {
 		}
 	}()
 
-	w.ShowAndRun()
+	shared.AppWindow.Canvas().SetOnTypedRune(events.KeyListener)
+	shared.AppWindow.ShowAndRun()
 }
 
 func getImage() string {

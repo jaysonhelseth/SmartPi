@@ -3,3 +3,5 @@ golang/go.sum
 golang/gopictureframe
 golang/Icon.png
 golang/fyne-cross
+golang/.idea
+golang/.vscode
